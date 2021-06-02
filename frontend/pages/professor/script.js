@@ -1,11 +1,23 @@
-const table = document.getElementById("professor-table");
-
 const apiUrl = "https://projeto-recodeiv.herokuapp.com/professors"
+
+const table = document.getElementById("professor-table");
+const searchBar = document.getElementById("searchBar");
+let data = [];
+
+searchBar.addEventListener("keyup", (e) => {
+    const searchString = e.target.value.toLowerCase();
+    const filteredProfessors = data.filter(professor => {
+        return professor.name.toLowerCase().includes(searchString) || 
+        professor.cpf.includes(searchString) || 
+        professor.department.name.toLowerCase().includes(searchString);
+    });
+    loadTable(filteredProfessors);
+});
 
 const getData = async () => {
     const response = await fetch(apiUrl);
     if(response.ok) {
-        const data = await response.json();
+        data = await response.json();
         loadTable(data);
     }
 };
@@ -22,10 +34,10 @@ const loadTable = (data) => {
             <td>${data[i].department.name}</td>
             <td>
                 <button id="actionsButtons" onclick={goToEdit(${data[i].id})}> 
-                    <img id="button" src="../../images/edit icon.png" width="25px" heigth="25px">
+                    <img id="button" src="../images/edit icon.png" width="25px" heigth="25px">
                 </button>
                 <button id="actionsButtons" onclick={deleteById(${data[i].id})}> 
-                    <img id="button" src="../../images/delete icon.png" width="20px" heigth="20px">
+                    <img id="button" src="../images/delete icon.png" width="20px" heigth="20px">
                 </button>
             </td>
         </tr>

@@ -26,3 +26,22 @@ footer {
     padding: 3px;
     border-radius: 3px;
 }
+
+#tableHeaderActions {
+    margin: 10px;
+    display: inline-flex;
+}
+
+#tableFooterActions {
+    margin-right: 20px;
+}
+
+#buttonsInside {
+    margin-right: 210px;
+    margin-left: 10px;
+}
+
+#searchBar {
+    margin-left: 210px;
+    width: 600px;
+}
